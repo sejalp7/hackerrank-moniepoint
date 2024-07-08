@@ -1,0 +1,265 @@
+// Problem 1 - Grid Box Layout 
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Grid Boxes Layout</title>
+    <meta charset="UTF-8" />
+  </head>
+  <style>
+    .container {
+      position: relative;
+    }
+
+    .box {
+      background-color: #94cef5;
+      border: 1px solid #4ea4e0;
+      border-radius: 10px;
+      box-sizing: border-box;
+      min-height: 35px;
+      min-width: 40px;
+      position: relative;
+    }
+
+    .box:nth-child(odd) {
+      background-color: #c5e6fc;
+      border: 1px solid #92caf1;
+    }
+
+    .layout .box {
+      opacity: 0.8;
+    }
+
+    .template .box {
+      background-color: initial;
+      border: 1px solid gray;
+    }
+
+    .container {
+      height: 500px;
+    }
+
+    .layout,
+    .template {
+      height: 400px;
+      width: 550px;
+      border: 1px solid #94cef5;
+      border-radius: 5px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .layout {
+      z-index: 1;
+    }
+
+    .template .box {
+      position: absolute;
+    }
+
+    .box:before {
+      content: attr(data-title);
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      left: 0;
+      right: 0;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .template [data-title] {
+      width: 100px;
+      height: 100px;
+    }
+
+    .template [data-title="1"] {
+      top: 40px;
+      left: 420px;
+    }
+
+    .template [data-title="2"] {
+      top: 150px;
+      left: 420px;
+    }
+
+    .template [data-title="3"] {
+      top: 260px;
+      left: 420px;
+    }
+
+    .template [data-title="4"] {
+      top: 40px;
+      left: 30px;
+    }
+
+    .template [data-title="5"] {
+      top: 150px;
+      left: 30px;
+    }
+
+    .template [data-title="6"] {
+      top: 260px;
+      left: 30px;
+    }
+
+    .template [data-title="7"] {
+      top: 40px;
+      left: 160px;
+    }
+
+    .template [data-title="8"] {
+      top: 150px;
+      left: 160px;
+    }
+
+    .template [data-title="9"] {
+      top: 260px;
+      left: 160px;
+    }
+
+    .template [data-title="10"] {
+      top: 40px;
+      left: 290px;
+    }
+
+    .template [data-title="11"] {
+      top: 150px;
+      left: 290px;
+    }
+
+    .template [data-title="12"] {
+      top: 260px;
+      left: 290px;
+    }
+  </style>
+
+  <style>
+    body,
+    html {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+
+    .container {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .layout,
+    .template {
+      position: absolute;
+      display: grid;
+      grid-template-columns: repeat(4, 100px); /* Creates 4 columns */
+      grid-template-rows: repeat(3, 100px); /* Creates 3 rows */
+      row-gap: 10px;
+      justify-content: space-evenly;
+    }
+
+    .layout .box:nth-child(1) {
+      grid-column: 4;
+      grid-row: 1;
+    }
+    .layout .box:nth-child(2) {
+      grid-column: 4;
+      grid-row: 2;
+    }
+    .layout .box:nth-child(3) {
+      grid-column: 4;
+      grid-row: 3;
+    }
+    .layout .box:nth-child(4) {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .layout .box:nth-child(5) {
+      grid-column: 1;
+      grid-row: 2;
+    }
+    .layout .box:nth-child(6) {
+      grid-column: 1;
+      grid-row: 3;
+    }
+    .layout .box:nth-child(7) {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .layout .box:nth-child(8) {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    .layout .box:nth-child(9) {
+      grid-column: 2;
+      grid-row: 3;
+    }
+
+    .layout .box {
+      margin-top: 40px;
+    }
+    .box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+  <body>
+    <!--HTML content goes here-->
+    <h8k-navbar header="Grid Boxes Layout" class="hydrated"
+      ><nav class="app-header">
+        <div class="layout-row align-items-center justify-content-center">
+          <h8k-logo class="hydrated"
+            ><img
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAXVBMVEUOFB4A6mT///8AAAALERwOABgABRQABhb6+vtTVlsHtFAA7mUHrU4OABsPABYA52Pc3d0AAA8AAAbX19imp6r09PUeIysKgD4KdjsHsU/DxMaTlJfm5ucUGiMKcDkcwJDzAAABFklEQVR4nO3cvVKDQBSAUQRiUIwY4m/UvP9jpogU4WYcZouV4Dklews+yp3hFgUAAAAAAAAAAAAAAAAAAAAAgyqaNFQPZ5tUuQJ3ZXOu3IXE6jkMvbz+JG7e2i5F+54nsV6XUSx8ikN3t6ez1X17k6L9WGUqbP6q8EGhQoUKFSpUqFChQoUKFSpUqFChQoUK519Yjyi8usJJFCpUqFChQoUKFSpUqFChQoWzLwyPLn2Fqy6stiOLu6dZ/k3UP7gvVahQoUKFChUqVKhQoUKFChUqVKhQocJYGN99Wf/jF9U+rEvYh8L+czzUfH0POxUOSSsVuu6QbW3ElL0Y/W97MR7T5AoEAAAAAAAAAAAAAAAAAAAAmLUjSkxXL4VH7TgAAAAASUVORK5CYII="
+              class="logo"
+          /></h8k-logo>
+          <h4 id="app-title" class="app-title ml-16 my-0">Grid Boxes Layout</h4>
+        </div>
+      </nav></h8k-navbar
+    >
+
+    <div class="my-50 mx-auto">
+      <div class="container">
+        <div class="layout">
+          <div class="box" data-title="1"></div>
+          <div class="box" data-title="2"></div>
+          <div class="box" data-title="3"></div>
+          <div class="box" data-title="4"></div>
+          <div class="box" data-title="5"></div>
+          <div class="box" data-title="6"></div>
+          <div class="box" data-title="7"></div>
+          <div class="box" data-title="8"></div>
+          <div class="box" data-title="9"></div>
+          <div class="box" data-title="10"></div>
+          <div class="box" data-title="11"></div>
+          <div class="box" data-title="12"></div>
+        </div>
+        <div class="template">
+          <div class="box" data-title="1"></div>
+          <div class="box" data-title="2"></div>
+          <div class="box" data-title="3"></div>
+          <div class="box" data-title="4"></div>
+          <div class="box" data-title="5"></div>
+          <div class="box" data-title="6"></div>
+          <div class="box" data-title="7"></div>
+          <div class="box" data-title="8"></div>
+          <div class="box" data-title="9"></div>
+          <div class="box" data-title="10"></div>
+          <div class="box" data-title="11"></div>
+          <div class="box" data-title="12"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
